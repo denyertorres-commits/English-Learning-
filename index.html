@@ -1,0 +1,3016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Master 4.0 - El Camino del Maestro</title>
+
+<!-- ============ GOOGLE ADSENSE ============ -->
+<!--
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+  
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+  }
+  
+  .game-container {
+    background: #fff;
+    border-radius: 24px;
+    padding: 28px;
+    max-width: 660px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ad-slot {
+    background: #f7fafc;
+    border: 2px dashed #cbd5e0;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    color: #a0aec0;
+    font-size: 12px;
+    margin: 12px 0;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .level-badge {
+    background: linear-gradient(135deg, #f6ad55, #ed8936);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(237,137,54,0.3);
+  }
+  
+  .xp-bar-container {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .xp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f6ad55, #ed8936);
+    width: 0%;
+    transition: width 0.6s ease;
+    border-radius: 10px;
+  }
+  
+  .xp-text {
+    position: absolute;
+    right: 0;
+    top: -18px;
+    font-size: 10px;
+    color: #a0aec0;
+    font-weight: 700;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .stat {
+    background: #f0f2ff;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4c51bf;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .timer-ring {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: conic-gradient(#667eea 0deg, #e2e8f0 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    color: #4c51bf;
+    position: relative;
+  }
+  
+  .timer-ring::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: white;
+    border-radius: 50%;
+  }
+  
+  .timer-ring span { position: relative; z-index: 1; }
+  
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 10px;
+  }
+  
+  .question {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  
+  .question-label {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  
+  .word-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .word {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+  
+  .speak-btn {
+    background: #ebf0ff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  
+  .speak-btn:hover { background: #667eea; transform: scale(1.1); }
+  
+  .word-hint {
+    font-size: 13px;
+    color: #a0aec0;
+    margin-top: 8px;
+  }
+  
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .option {
+    padding: 16px 12px;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #2d3748;
+    word-break: break-word;
+  }
+  
+  .option:hover:not(:disabled) {
+    border-color: #667eea;
+    background: #ebf0ff;
+    transform: translateY(-2px);
+  }
+  
+  .option:disabled { cursor: default; }
+  .option.correct { background: #c6f6d5; border-color: #38a169; color: #22543d; }
+  .option.wrong { background: #fed7d7; border-color: #e53e3e; color: #742a2a; }
+  
+  .feedback {
+    text-align: center;
+    font-weight: 600;
+    min-height: 24px;
+    margin-bottom: 12px;
+    transition: opacity 0.3s;
+    opacity: 0;
+    font-size: 14px;
+  }
+  
+  .feedback.show { opacity: 1; }
+  .feedback.ok { color: #38a169; }
+  .feedback.err { color: #e53e3e; }
+  
+  .btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102,126,234,0.4); }
+  
+  .btn-secondary {
+    background: #f7fafc;
+    color: #4c51bf;
+    border: 2px solid #e2e8f0;
+  }
+  
+  .btn-secondary:hover { background: #ebf0ff; border-color: #667eea; box-shadow: none; }
+  
+  .btn-donate {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    box-shadow: 0 4px 12px rgba(72,187,120,0.3);
+  }
+  
+  .btn-donate:hover { box-shadow: 0 10px 20px rgba(72,187,120,0.5); }
+  
+  .btn-story {
+    background: linear-gradient(135deg, #9f7aea, #805ad5);
+    box-shadow: 0 4px 12px rgba(159,122,234,0.3);
+  }
+  
+  .btn-story:hover { box-shadow: 0 10px 20px rgba(159,122,234,0.5); }
+  
+  .screen { display: none; animation: fadeIn 0.4s ease; }
+  .screen.active { display: block; }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .start-screen { text-align: center; }
+  
+  .start-screen h1 {
+    font-size: 32px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+  
+  .start-screen > p { color: #718096; margin-bottom: 16px; font-size: 14px; }
+  
+  .section-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #a0aec0;
+    font-weight: 700;
+    margin: 16px 0 10px;
+    text-align: left;
+  }
+  
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+  }
+  
+  .cat-btn {
+    padding: 12px 6px;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a5568;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .cat-btn .cat-icon { font-size: 20px; }
+  .cat-btn:hover { border-color: #667eea; background: #ebf0ff; }
+  .cat-btn.selected {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+  
+  .modes { display: grid; gap: 8px; }
+  
+  .mode-btn {
+    padding: 14px;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .mode-btn:hover { border-color: #667eea; background: #ebf0ff; transform: translateX(4px); }
+  
+  .mode-btn.timed { border-color: #f6ad55; background: #fffaf0; }
+  .mode-btn.timed:hover { background: #feebc8; }
+  
+  .mode-btn.group { border-color: #48bb78; background: #f0fff4; }
+  .mode-btn.group:hover { background: #c6f6d5; }
+  
+  .mode-btn.story { border-color: #9f7aea; background: #faf5ff; }
+  .mode-btn.story:hover { background: #e9d8fd; }
+  
+  .mode-icon { font-size: 22px; }
+  .mode-text strong { display: block; color: #2d3748; font-size: 14px; }
+  .mode-text span { color: #718096; font-size: 12px; }
+  
+  .results { text-align: center; }
+  
+  .results h2 { font-size: 26px; color: #2d3748; margin-bottom: 6px; }
+  
+  .score-final {
+    font-size: 52px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 8px 0;
+  }
+  
+  .results .message {
+    color: #718096;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .stat-card { background: #f7fafc; padding: 12px 8px; border-radius: 12px; }
+  .stat-card .value { font-size: 20px; font-weight: 700; color: #4c51bf; }
+  .stat-card .label {
+    font-size: 10px;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+  
+  .xp-earned {
+    background: linear-gradient(135deg, #fff5e6, #ffe9c7);
+    padding: 14px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    border-left: 4px solid #f6ad55;
+  }
+  
+  .xp-earned strong { color: #dd6b20; font-size: 18px; }
+  .xp-earned span { color: #975a16; font-size: 12px; display: block; }
+  
+  .achievement {
+    background: #f7fafc;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    text-align: left;
+    border-left: 4px solid #e2e8f0;
+  }
+  
+  .achievement.unlocked {
+    background: linear-gradient(135deg, #fff5e6, #ffe9c7);
+    border-left-color: #f6ad55;
+  }
+  
+  .achievement.locked { opacity: 0.5; }
+  .ach-icon { font-size: 24px; }
+  .ach-info strong { display: block; color: #2d3748; font-size: 14px; }
+  .ach-info span { color: #718096; font-size: 12px; }
+  
+  .toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: linear-gradient(135deg, #f6ad55, #ed8936);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(246,173,85,0.4);
+    z-index: 1000;
+    transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 90%;
+  }
+  
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+  
+  .modal-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
+  
+  .modal {
+    background: white;
+    border-radius: 24px;
+    padding: 30px 24px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  @keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  
+  .modal h2 {
+    font-size: 26px;
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  
+  .modal .subtitle {
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+  
+  .donation-purpose {
+    background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+    border: 2px solid #9ae6b4;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  
+  .donation-purpose .purpose-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #22543d;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .donation-purpose .purpose-text {
+    font-size: 13px;
+    color: #2f855a;
+    line-height: 1.6;
+  }
+  
+  .free-amount-box {
+    background: #fffaf0;
+    border: 2px solid #f6ad55;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .free-amount-box label {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: #975a16;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  
+  .free-amount-input {
+    width: 100%;
+    padding: 14px;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    border: 2px solid #fbd38d;
+    border-radius: 12px;
+    color: #975a16;
+    background: white;
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  .free-amount-input:focus {
+    border-color: #ed8936;
+    box-shadow: 0 0 0 4px rgba(246,173,85,0.2);
+  }
+  
+  .free-amount-hint {
+    font-size: 11px;
+    color: #b7791f;
+    margin-top: 6px;
+    font-style: italic;
+  }
+  
+  .payment-data {
+    background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 16px;
+    border: 2px solid #9ae6b4;
+  }
+  
+  .payment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #c6f6d5;
+    gap: 10px;
+  }
+  
+  .payment-row:last-child { border-bottom: none; }
+  
+  .payment-label {
+    font-size: 12px;
+    color: #22543d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-align: left;
+  }
+  
+  .payment-value {
+    font-size: 15px;
+    font-weight: 800;
+    color: #22543d;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: right;
+    word-break: break-word;
+  }
+  
+  .copy-btn {
+    background: #38a169;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  
+  .copy-btn:hover { background: #2f855a; transform: scale(1.05); }
+  
+  .thanks-note {
+    background: #fef5e7;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 12px;
+    color: #975a16;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  
+  .menu-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .menu-links .btn { margin-bottom: 0; padding: 12px; font-size: 13px; }
+  
+  .leader-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #f7fafc;
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+  
+  .leader-row.me { background: linear-gradient(135deg, #ebf0ff, #f0e7ff); border: 2px solid #667eea; }
+  
+  .leader-rank {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    color: #4a5568;
+    flex-shrink: 0;
+  }
+  
+  .leader-rank.gold { background: linear-gradient(135deg, #ffd700, #f6ad55); color: white; }
+  .leader-rank.silver { background: linear-gradient(135deg, #c0c0c0, #a0aec0); color: white; }
+  .leader-rank.bronze { background: linear-gradient(135deg, #cd7f32, #b7791f); color: white; }
+  
+  .leader-name { flex: 1; font-weight: 600; font-size: 14px; color: #2d3748; }
+  .leader-score { font-weight: 800; color: #4c51bf; font-size: 14px; }
+  
+  .player-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .player-num {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .player-input {
+    flex: 1;
+    padding: 12px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  .player-input:focus { border-color: #667eea; background: #ebf0ff; }
+  
+  .player-count-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .count-btn {
+    padding: 12px;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #4a5568;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .count-btn:hover { border-color: #48bb78; background: #f0fff4; }
+  .count-btn.selected {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+    border-color: #38a169;
+  }
+  
+  .turn-banner {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: pulseTurn 1.5s ease infinite;
+  }
+  
+  @keyframes pulseTurn {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(102,126,234,0.3); }
+    50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(102,126,234,0.5); }
+  }
+  
+  .players-scores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .player-card {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+  }
+  
+  .player-card.active {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #ebf0ff, #f0e7ff);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+  }
+  
+  .player-card.eliminated { opacity: 0.4; background: #fed7d7; border-color: #e53e3e; }
+  
+  .player-card .pname {
+    font-size: 12px;
+    font-weight: 800;
+    color: #2d3748;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .player-card .pscore { font-size: 18px; font-weight: 800; color: #4c51bf; }
+  .player-card .plives { font-size: 11px; margin-top: 2px; }
+  
+  .player-card.active::before {
+    content: '▶';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 10px;
+    color: #667eea;
+    animation: blink 0.8s ease infinite;
+  }
+  
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  
+  .group-ranking { margin: 16px 0; }
+  
+  .ranking-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #f7fafc;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border-left: 4px solid #e2e8f0;
+  }
+  
+  .ranking-row.first {
+    background: linear-gradient(135deg, #fff5e6, #ffe9c7);
+    border-left-color: #f6ad55;
+    transform: scale(1.02);
+  }
+  
+  .ranking-row.second { background: linear-gradient(135deg, #f0f2ff, #e6ecff); border-left-color: #a0aec0; }
+  .ranking-row.third { background: linear-gradient(135deg, #fef5e7, #fbd9a5); border-left-color: #cd7f32; }
+  
+  .ranking-medal { font-size: 24px; flex-shrink: 0; }
+  .ranking-info { flex: 1; text-align: left; }
+  .ranking-info strong { display: block; color: #2d3748; font-size: 14px; }
+  .ranking-info span { color: #718096; font-size: 12px; }
+  .ranking-score { font-size: 20px; font-weight: 800; color: #4c51bf; }
+  
+  /* ============ MODO HISTORIA ============ */
+  .chapter-select-title {
+    font-size: 26px;
+    text-align: center;
+    background: linear-gradient(135deg, #9f7aea, #805ad5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+  
+  .chapter-subtitle {
+    text-align: center;
+    color: #718096;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  
+  .chapters-list {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .chapter-card {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    width: 100%;
+    font-family: inherit;
+  }
+  
+  .chapter-card:hover:not(.locked) {
+    border-color: #9f7aea;
+    background: #faf5ff;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(159,122,234,0.2);
+  }
+  
+  .chapter-card.locked {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: #f0f2f5;
+  }
+  
+  .chapter-card.completed {
+    border-color: #48bb78;
+    background: linear-gradient(135deg, #f0fff4, #e6fffa);
+  }
+  
+  .chapter-icon-big {
+    font-size: 38px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ebf0ff, #f0e7ff);
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+  
+  .chapter-info { flex: 1; }
+  .chapter-info h3 { font-size: 15px; color: #2d3748; margin-bottom: 2px; }
+  .chapter-info .chapter-num {
+    font-size: 10px;
+    font-weight: 800;
+    color: #9f7aea;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .chapter-info .chapter-details {
+    font-size: 11px;
+    color: #718096;
+    line-height: 1.4;
+  }
+  .chapter-status {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  
+  /* Story intro */
+  .story-intro {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .story-intro-icon {
+    font-size: 80px;
+    margin: 10px 0;
+    animation: float 3s ease-in-out infinite;
+    display: block;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .story-intro .chapter-number {
+    font-size: 12px;
+    color: #9f7aea;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  
+  .story-intro h2 {
+    font-size: 28px;
+    background: linear-gradient(135deg, #9f7aea, #805ad5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+  }
+  
+  .story-narrative {
+    background: linear-gradient(135deg, #faf5ff, #e9d8fd);
+    border-left: 4px solid #9f7aea;
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 14px;
+    color: #44337a;
+    line-height: 1.7;
+    text-align: left;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  
+  .story-stats-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .story-stat-mini {
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .story-stat-mini .val { font-size: 18px; font-weight: 800; color: #4c51bf; }
+  .story-stat-mini .lbl {
+    font-size: 10px;
+    color: #718096;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  
+  .boss-preview {
+    background: linear-gradient(135deg, #fff5f5, #fed7d7);
+    border: 2px solid #fc8181;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .boss-preview-icon {
+    font-size: 36px;
+    animation: shake 2s ease-in-out infinite;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  
+  .boss-preview-info { text-align: left; flex: 1; }
+  .boss-preview-info .boss-label {
+    font-size: 10px;
+    color: #c53030;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .boss-preview-info .boss-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: #742a2a;
+    margin-top: 2px;
+  }
+  
+  /* Boss battle in-game */
+  .boss-battle-banner {
+    background: linear-gradient(135deg, #e53e3e, #9b2c2c);
+    color: white;
+    padding: 14px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: bossPulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes bossPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(229,62,62,0.4); }
+    50% { box-shadow: 0 0 40px rgba(229,62,62,0.8); }
+  }
+  
+  .boss-battle-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 800;
+    opacity: 0.9;
+    margin-bottom: 4px;
+  }
+  
+  .boss-battle-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  
+  .boss-battle-emoji {
+    font-size: 44px;
+    animation: bossShake 0.5s ease-in-out infinite;
+  }
+  
+  @keyframes bossShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px) rotate(-5deg); }
+    75% { transform: translateX(3px) rotate(5deg); }
+  }
+  
+  .boss-battle-info { text-align: left; }
+  .boss-battle-name {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  
+  .boss-hp-bar {
+    width: 160px;
+    height: 12px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  
+  .boss-hp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f6ad55, #ed8936);
+    width: 100%;
+    transition: width 0.4s ease;
+    border-radius: 10px;
+  }
+  
+  .boss-timer-big {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fef5e7;
+    background: rgba(0,0,0,0.3);
+    padding: 6px 12px;
+    border-radius: 10px;
+    min-width: 60px;
+    text-align: center;
+  }
+  
+  .boss-timer-big.danger {
+    color: #feb2b2;
+    animation: timerPulse 0.5s ease-in-out infinite;
+  }
+  
+  @keyframes timerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  .story-progress {
+    background: linear-gradient(135deg, #faf5ff, #e9d8fd);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    color: #553c9a;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  /* Story result screens */
+  .story-result {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .story-result .big-emoji {
+    font-size: 72px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .story-result .trophy {
+    animation: trophyBounce 1s ease infinite;
+  }
+  
+  @keyframes trophyBounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.05); }
+  }
+  
+  .story-result .skull {
+    animation: skullShake 1.5s ease infinite;
+  }
+  
+  @keyframes skullShake {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  
+  .story-result h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  
+  .story-result.complete h2 {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .story-result.failed h2 {
+    background: linear-gradient(135deg, #e53e3e, #9b2c2c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .story-result .story-message {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+  
+  .next-chapter-unlock {
+    background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+    border: 2px solid #9ae6b4;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 16px;
+    color: #22543d;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  
+  .story-failed-message {
+    background: linear-gradient(135deg, #fff5f5, #fed7d7);
+    border: 2px solid #fc8181;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 16px;
+    color: #742a2a;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast">
+  <span id="toast-icon">🏆</span>
+  <span id="toast-text">¡Logro desbloqueado!</span>
+</div>
+
+<!-- ============ MODAL DE DONACIÓN ============ -->
+  <div class="modal-overlay" id="groupModal">
+  <div class="modal">
+    <h2 style="background: linear-gradient(135deg, #48bb78, #38a169); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">👥 Modo Grupal</h2>
+    <p class="subtitle">Elige cuántos jugadores participarán</p>
+    
+    <div class="player-count-selector">
+      <button class="count-btn" onclick="selectPlayerCount(2)">2</button>
+      <button class="count-btn selected" onclick="selectPlayerCount(3)">3</button>
+      <button class="count-btn" onclick="selectPlayerCount(4)">4</button>
+    </div>
+    
+    <div class="section-title" style="text-align:left;">Nombres de jugadores</div>
+    <div id="players-inputs"></div>
+    
+    <div class="thanks-note" style="background:#e6fffa; color:#234e52;">
+      🎯 <strong>Cómo funciona:</strong> Cada jugador tiene <strong>3 vidas</strong>. Se turnan para responder. Si fallas, pierdes una vida. El último en pie o con más puntos gana.
+    </div>
+    
+    <button class="btn" onclick="startGroupGame()" style="background: linear-gradient(135deg, #48bb78, #38a169);">
+      🎮 Comenzar partida
+    </button>
+    <button class="btn btn-secondary" onclick="closeGroupModal()">Cancelar</button>
+  </div>
+</div>
+
+<div class="game-container">
+  
+  <!-- ============ PANTALLA DE INICIO ============ -->
+  <div class="screen active" id="screen-start">
+    <div class="start-screen">
+      <div class="top-bar" style="justify-content: center;">
+        <div class="level-badge">
+          🏅 Nivel <span id="user-level">1</span>
+        </div>
+      </div>
+      
+      <div class="xp-bar-container">
+        <div class="xp-bar-fill" id="xp-fill"></div>
+        <span class="xp-text" id="xp-text">0 / 100 XP</span>
+      </div>
+      
+      <h1>English Master 🎓</h1>
+      <p>Domina el vocabulario jugando</p>
+      
+      <div class="ad-slot">📢 Espacio publicitario</div>
+      
+      <div class="section-title">📚 Categoría</div>
+      <div class="categories" id="categories"></div>
+      
+      <div class="section-title">🎮 Modo de juego</div>
+      <div class="modes">
+        <button class="mode-btn story" onclick="openStorySelect()">
+          <div class="mode-icon">📖</div>
+          <div class="mode-text">
+            <strong>Modo Historia</strong>
+            <span>El Camino del Maestro · 5 capítulos épicos</span>
+          </div>
+        </button>
+        
+        <button class="mode-btn" onclick="startGame('es-en')">
+          <div class="mode-icon">🇪🇸→🇬🇧</div>
+          <div class="mode-text">
+            <strong>Español → Inglés</strong>
+            <span>Traduce al inglés</span>
+          </div>
+        </button>
+        
+        <button class="mode-btn" onclick="startGame('en-es')">
+          <div class="mode-icon">🇬🇧→🇪🇸</div>
+          <div class="mode-text">
+            <strong>Inglés → Español</strong>
+            <span>Traduce al español</span>
+          </div>
+        </button>
+        
+        <button class="mode-btn" onclick="startGame('audio')">
+          <div class="mode-icon">🔊</div>
+          <div class="mode-text">
+            <strong>Modo Escucha</strong>
+            <span>Escucha y traduce</span>
+          </div>
+        </button>
+        
+        <button class="mode-btn timed" onclick="startGame('timed')">
+          <div class="mode-icon">⏱️</div>
+          <div class="mode-text">
+            <strong>Contrarreloj</strong>
+            <span>60 segundos, máximo puntaje</span>
+          </div>
+        </button>
+        
+        <button class="mode-btn group" onclick="openGroupModal()">
+          <div class="mode-icon">👥</div>
+          <div class="mode-text">
+            <strong>Modo Grupal</strong>
+            <span>Hasta 4 jugadores por turnos</span>
+          </div>
+        </button>
+      </div>
+      
+      <button class="btn btn-donate" style="margin-top:14px;" onclick="openDonateModal()">
+        💚 Apoyar el proyecto (donar)
+      </button>
+      
+      <div class="menu-links">
+        <button class="btn btn-secondary" onclick="showAchievements()">🏅 Logros</button>
+        <button class="btn btn-secondary" onclick="showLeaderboard()">📊 Ranking</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ============ PANTALLA SELECCIÓN DE CAPÍTULOS ============ -->
+  <div class="screen" id="screen-story-select">
+    <h2 class="chapter-select-title">📖 El Camino del Maestro</h2>
+    <p class="chapter-subtitle">5 capítulos te separan de la maestría. ¿Podrás completarlos todos?</p>
+    <div class="chapters-list" id="chapters-list"></div>
+    <button class="btn btn-secondary" onclick="backToMenu()">← Volver al menú</button>
+  </div>
+  
+  <!-- ============ PANTALLA INTRO DE CAPÍTULO ============ -->
+  <div class="screen" id="screen-story-intro">
+    <div class="story-intro">
+      <span class="story-intro-icon" id="intro-icon">🌅</span>
+      <div class="chapter-number" id="intro-number">Capítulo 1</div>
+      <h2 id="intro-title">El Despertar</h2>
+      
+      <div class="story-narrative" id="intro-narrative"></div>
+      
+      <div class="story-stats-mini">
+        <div class="story-stat-mini">
+          <div class="val" id="intro-questions">11</div>
+          <div class="lbl">Preguntas</div>
+        </div>
+        <div class="story-stat-mini">
+          <div class="val" id="intro-lives">3 ❤️</div>
+          <div class="lbl">Vidas</div>
+        </div>
+      </div>
+      
+      <div class="boss-preview">
+        <span class="boss-preview-icon" id="intro-boss-icon">🐉</span>
+        <div class="boss-preview-info">
+          <div class="boss-label">Jefe final</div>
+          <div class="boss-name" id="intro-boss-name">Dragón del Pueblo</div>
+        </div>
+      </div>
+      
+      <button class="btn btn-story" onclick="beginStoryChapter()">⚔️ Comenzar capítulo</button>
+      <button class="btn btn-secondary" onclick="openStorySelect()">← Volver</button>
+    </div>
+  </div>
+  
+  <!-- ============ PANTALLA DE JUEGO ============ -->
+  <div class="screen" id="screen-game">
+    <!-- Modo historia: progreso -->
+    <div class="story-progress" id="story-progress" style="display:none;">
+      📖 <span id="story-chapter-label">Capítulo 1</span> · <span id="story-q-label">Pregunta 1/8</span>
+    </div>
+    
+    <!-- Modo historia: boss battle -->
+    <div class="boss-battle-banner" id="boss-battle-banner" style="display:none;">
+      <div class="boss-battle-label">⚠️ ¡BATALLA FINAL! ⚠️</div>
+      <div class="boss-battle-content">
+        <div class="boss-battle-emoji" id="boss-emoji">🐉</div>
+        <div class="boss-battle-info">
+          <div class="boss-battle-name" id="boss-battle-name">Dragón del Pueblo</div>
+          <div class="boss-hp-bar">
+            <div class="boss-hp-fill" id="boss-hp-fill"></div>
+          </div>
+        </div>
+        <div class="boss-timer-big" id="boss-timer-big">20s</div>
+      </div>
+    </div>
+    
+    <!-- Modo grupal -->
+    <div class="turn-banner" id="turn-banner" style="display:none;">
+      🎯 Turno de: <span id="turn-player-name">Jugador 1</span>
+    </div>
+    <div class="players-scores" id="players-scores" style="display:none;"></div>
+    
+    <!-- Header normal -->
+    <div class="header" id="normal-header">
+      <div class="stat">⭐ <span id="score">0</span></div>
+      <div class="stat" id="lives-stat">❤️ <span id="lives">3</span></div>
+      <div class="timer-ring" id="timer-ring" style="display:none;">
+        <span id="timer-text">60</span>
+      </div>
+      <div class="stat" id="qnum-stat">📝 <span id="qnum">1</span>/10</div>
+    </div>
+    
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+    
+    <div class="question">
+      <div class="question-label" id="q-label">Traduce al inglés</div>
+      <div class="word-wrapper">
+        <div class="word" id="word">Hello</div>
+        <button class="speak-btn" id="speak-btn" onclick="speakCurrentWord()" title="Escuchar (Espacio)">🔊</button>
+      </div>
+      <div class="word-hint" id="hint"></div>
+    </div>
+    
+    <div class="options" id="options"></div>
+    
+    <div class="feedback" id="feedback"></div>
+    
+    <button class="btn" id="next-btn" style="display:none;" onclick="advance()">
+      Siguiente →
+    </button>
+    <button class="btn btn-secondary" onclick="quitGame()">← Salir</button>
+  </div>
+  
+  <!-- ============ PANTALLA DE RESULTADOS NORMALES ============ -->
+  <div class="screen" id="screen-results">
+    <div class="results">
+      <h2 id="results-title">¡Bien hecho!</h2>
+      <div class="score-final" id="final-score">0</div>
+      <p class="message" id="results-message"></p>
+      
+      <div class="group-ranking" id="group-ranking" style="display:none;"></div>
+      
+      <div class="xp-earned" id="xp-earned" style="display:none;">
+        <strong id="xp-gained-text">+0 XP</strong>
+        <span id="xp-level-text">Nivel 1</span>
+      </div>
+      
+      <div class="stats-grid" id="normal-stats">
+        <div class="stat-card">
+          <div class="value" id="final-correct">0</div>
+          <div class="label">Correctas</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="final-accuracy">0%</div>
+          <div class="label">Precisión</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="final-streak">0</div>
+          <div class="label">Racha</div>
+        </div>
+      </div>
+      
+      <div id="new-achievements"></div>
+      
+      <div class="ad-slot">📢 Espacio publicitario</div>
+      
+      <button class="btn" onclick="backToMenu()">🔄 Jugar de nuevo</button>
+    </div>
+  </div>
+  
+  <!-- ============ PANTALLA CAPÍTULO COMPLETADO ============ -->
+  <div class="screen" id="screen-story-complete">
+    <div class="story-result complete">
+      <span class="big-emoji trophy">🏆</span>
+      <h2>¡Capítulo completado!</h2>
+      <p class="story-message" id="story-complete-message"></p>
+      
+      <div class="xp-earned" style="display:block;">
+        <strong id="story-xp-gained">+0 XP</strong>
+        <span id="story-xp-level">Nivel 1</span>
+      </div>
+      
+      <div class="next-chapter-unlock" id="next-chapter-unlock" style="display:none;"></div>
+      
+      <div id="story-new-achievements"></div>
+      
+      <button class="btn btn-story" id="next-chapter-btn" onclick="advanceToNextChapter()">Siguiente capítulo →</button>
+      <button class="btn btn-secondary" onclick="openStorySelect()">🗺️ Volver al mapa</button>
+    </div>
+  </div>
+  
+  <!-- ============ PANTALLA CAPÍTULO FALLIDO ============ -->
+  <div class="screen" id="screen-story-failed">
+    <div class="story-result failed">
+      <span class="big-emoji skull">💀</span>
+      <h2>Has caído...</h2>
+      <p class="story-message" id="story-failed-message"></p>
+      
+      <div class="story-failed-message">
+        💡 <strong>Consejo:</strong> Practica el vocabulario en los modos normales antes de volver a intentarlo. La constancia es la clave del maestro.
+      </div>
+      
+      <button class="btn btn-story" onclick="retryChapter()">🔄 Reintentar capítulo</button>
+      <button class="btn btn-secondary" onclick="openStorySelect()">🗺️ Volver al mapa</button>
+    </div>
+  </div>
+  
+  <!-- ============ PANTALLA DE LOGROS ============ -->
+  <div class="screen" id="screen-achievements">
+    <h2 style="text-align:center; color:#2d3748; margin-bottom:15px;">🏅 Tus Logros</h2>
+    <div id="achievements-list"></div>
+    <button class="btn btn-secondary" style="margin-top:15px;" onclick="backToMenu()">← Volver</button>
+  </div>
+  
+  <!-- ============ PANTALLA DE RANKING ============ -->
+  <div class="screen" id="screen-leaderboard">
+    <h2 style="text-align:center; color:#2d3748; margin-bottom:15px;">📊 Ranking Global</h2>
+    <p style="text-align:center; color:#718096; font-size:13px; margin-bottom:16px;">
+      Simulación · Tú estás en la posición #<span id="my-rank">--</span>
+    </p>
+    <div id="leaderboard-list"></div>
+    <button class="btn btn-secondary" style="margin-top:15px;" onclick="backToMenu()">← Volver</button>
+  </div>
+  
+</div>
+
+<script>
+// ============================================================
+// BASE DE DATOS DE PALABRAS (45 por categoría)
+// ============================================================
+const WORD_DB = {
+  basico: {
+    name: "Básico", icon: "🌱",
+    words: [
+      { es: "Perro", en: "Dog" }, { es: "Gato", en: "Cat" },
+      { es: "Casa", en: "House" }, { es: "Agua", en: "Water" },
+      { es: "Libro", en: "Book" }, { es: "Amigo", en: "Friend" },
+      { es: "Sol", en: "Sun" }, { es: "Luna", en: "Moon" },
+      { es: "Mesa", en: "Table" }, { es: "Silla", en: "Chair" },
+      { es: "Puerta", en: "Door" }, { es: "Ventana", en: "Window" },
+      { es: "Rojo", en: "Red" }, { es: "Azul", en: "Blue" },
+      { es: "Verde", en: "Green" }, { es: "Grande", en: "Big" },
+      { es: "Pequeño", en: "Small" }, { es: "Feliz", en: "Happy" },
+      { es: "Triste", en: "Sad" }, { es: "Rápido", en: "Fast" },
+      { es: "Lento", en: "Slow" }, { es: "Alto", en: "Tall" },
+      { es: "Bajo", en: "Short" }, { es: "Frío", en: "Cold" },
+      { es: "Caliente", en: "Hot" }, { es: "Día", en: "Day" },
+      { es: "Noche", en: "Night" }, { es: "Mañana", en: "Morning" },
+      { es: "Año", en: "Year" }, { es: "Mes", en: "Month" },
+      { es: "Semana", en: "Week" }, { es: "Dinero", en: "Money" },
+      { es: "Coche", en: "Car" }, { es: "Árbol", en: "Tree" },
+      { es: "Flor", en: "Flower" }, { es: "Pájaro", en: "Bird" },
+      { es: "Lluvia", en: "Rain" }, { es: "Nieve", en: "Snow" },
+      { es: "Viento", en: "Wind" }, { es: "Fuego", en: "Fire" },
+      { es: "Cielo", en: "Sky" }, { es: "Estrella", en: "Star" },
+      { es: "Camino", en: "Road" }, { es: "Familia", en: "Family" },
+      { es: "Ciudad", en: "City" }
+    ]
+  },
+  comida: {
+    name: "Comida", icon: "🍔",
+    words: [
+      { es: "Manzana", en: "Apple" }, { es: "Pan", en: "Bread" },
+      { es: "Leche", en: "Milk" }, { es: "Queso", en: "Cheese" },
+      { es: "Pollo", en: "Chicken" }, { es: "Arroz", en: "Rice" },
+      { es: "Huevo", en: "Egg" }, { es: "Carne", en: "Meat" },
+      { es: "Pescado", en: "Fish" }, { es: "Naranja", en: "Orange" },
+      { es: "Plátano", en: "Banana" }, { es: "Tomate", en: "Tomato" },
+      { es: "Café", en: "Coffee" }, { es: "Té", en: "Tea" },
+      { es: "Azúcar", en: "Sugar" }, { es: "Sal", en: "Salt" },
+      { es: "Sopa", en: "Soup" }, { es: "Ensalada", en: "Salad" },
+      { es: "Postre", en: "Dessert" }, { es: "Desayuno", en: "Breakfast" },
+      { es: "Almuerzo", en: "Lunch" }, { es: "Cena", en: "Dinner" },
+      { es: "Verduras", en: "Vegetables" }, { es: "Fruta", en: "Fruit" },
+      { es: "Jugo", en: "Juice" }, { es: "Vino", en: "Wine" },
+      { es: "Cerveza", en: "Beer" }, { es: "Helado", en: "Ice cream" },
+      { es: "Pastel", en: "Cake" }, { es: "Galleta", en: "Cookie" },
+      { es: "Chocolate", en: "Chocolate" }, { es: "Miel", en: "Honey" },
+      { es: "Mantequilla", en: "Butter" }, { es: "Aceite", en: "Oil" },
+      { es: "Vinagre", en: "Vinegar" }, { es: "Cebolla", en: "Onion" },
+      { es: "Ajo", en: "Garlic" }, { es: "Zanahoria", en: "Carrot" },
+      { es: "Papa", en: "Potato" }, { es: "Fresa", en: "Strawberry" },
+      { es: "Limón", en: "Lemon" }, { es: "Uva", en: "Grape" },
+      { es: "Sandía", en: "Watermelon" }, { es: "Piña", en: "Pineapple" },
+      { es: "Aguacate", en: "Avocado" }
+    ]
+  },
+  viajes: {
+    name: "Viajes", icon: "✈️",
+    words: [
+      { es: "Avión", en: "Airplane" }, { es: "Hotel", en: "Hotel" },
+      { es: "Maleta", en: "Suitcase" }, { es: "Pasaporte", en: "Passport" },
+      { es: "Billete", en: "Ticket" }, { es: "Aeropuerto", en: "Airport" },
+      { es: "Playa", en: "Beach" }, { es: "Montaña", en: "Mountain" },
+      { es: "Mapa", en: "Map" }, { es: "Turista", en: "Tourist" },
+      { es: "Cámara", en: "Camera" }, { es: "Destino", en: "Destination" },
+      { es: "Aventura", en: "Adventure" }, { es: "Equipaje", en: "Luggage" },
+      { es: "Reserva", en: "Reservation" }, { es: "Vuelo", en: "Flight" },
+      { es: "Frontera", en: "Border" }, { es: "Aduana", en: "Customs" },
+      { es: "Guía", en: "Guide" }, { es: "Excursión", en: "Tour" },
+      { es: "Tren", en: "Train" }, { es: "Autobús", en: "Bus" },
+      { es: "Barco", en: "Boat" }, { es: "Bicicleta", en: "Bicycle" },
+      { es: "Taxi", en: "Taxi" }, { es: "Estación", en: "Station" },
+      { es: "Puerto", en: "Port" }, { es: "Isla", en: "Island" },
+      { es: "Desierto", en: "Desert" }, { es: "Selva", en: "Jungle" },
+      { es: "Río", en: "River" }, { es: "Lago", en: "Lake" },
+      { es: "Cascada", en: "Waterfall" }, { es: "Volcán", en: "Volcano" },
+      { es: "Bosque", en: "Forest" }, { es: "Valle", en: "Valley" },
+      { es: "Pueblo", en: "Town" }, { es: "Aldea", en: "Village" },
+      { es: "Capital", en: "Capital" }, { es: "Moneda", en: "Currency" },
+      { es: "Vacaciones", en: "Vacation" }, { es: "Itinerario", en: "Itinerary" },
+      { es: "Alojamiento", en: "Accommodation" }, { es: "Extranjero", en: "Foreigner" },
+      { es: "Aventurero", en: "Adventurer" }
+    ]
+  },
+  negocios: {
+    name: "Negocios", icon: "💼",
+    words: [
+      { es: "Empresa", en: "Company" }, { es: "Reunión", en: "Meeting" },
+      { es: "Cliente", en: "Client" }, { es: "Contrato", en: "Contract" },
+      { es: "Proyecto", en: "Project" }, { es: "Presupuesto", en: "Budget" },
+      { es: "Inversión", en: "Investment" }, { es: "Beneficio", en: "Profit" },
+      { es: "Mercado", en: "Market" }, { es: "Estrategia", en: "Strategy" },
+      { es: "Gerente", en: "Manager" }, { es: "Empleado", en: "Employee" },
+      { es: "Oficina", en: "Office" }, { es: "Informe", en: "Report" },
+      { es: "Objetivo", en: "Goal" }, { es: "Acuerdo", en: "Agreement" },
+      { es: "Negociación", en: "Negotiation" }, { es: "Productividad", en: "Productivity" },
+      { es: "Innovación", en: "Innovation" }, { es: "Liderazgo", en: "Leadership" },
+      { es: "Salario", en: "Salary" }, { es: "Impuesto", en: "Tax" },
+      { es: "Factura", en: "Invoice" }, { es: "Recibo", en: "Receipt" },
+      { es: "Accionista", en: "Shareholder" }, { es: "Socio", en: "Partner" },
+      { es: "Marca", en: "Brand" }, { es: "Publicidad", en: "Advertising" },
+      { es: "Ventas", en: "Sales" }, { es: "Compra", en: "Purchase" },
+      { es: "Deuda", en: "Debt" }, { es: "Préstamo", en: "Loan" },
+      { es: "Banco", en: "Bank" }, { es: "Cuenta", en: "Account" },
+      { es: "Acciones", en: "Stocks" }, { es: "Crisis", en: "Crisis" },
+      { es: "Crecimiento", en: "Growth" }, { es: "Competencia", en: "Competition" },
+      { es: "Fundación", en: "Foundation" }, { es: "Franquicia", en: "Franchise" },
+      { es: "Proveedor", en: "Supplier" }, { es: "Consumidor", en: "Consumer" },
+      { es: "Emprendedor", en: "Entrepreneur" }, { es: "Rentabilidad", en: "Profitability" },
+      { es: "Estratega", en: "Strategist" }
+    ]
+  },
+  emociones: {
+    name: "Emociones", icon: "😊",
+    words: [
+      { es: "Amor", en: "Love" }, { es: "Miedo", en: "Fear" },
+      { es: "Alegría", en: "Joy" }, { es: "Enojo", en: "Anger" },
+      { es: "Sorpresa", en: "Surprise" }, { es: "Esperanza", en: "Hope" },
+      { es: "Orgullo", en: "Pride" }, { es: "Celos", en: "Jealousy" },
+      { es: "Vergüenza", en: "Shame" }, { es: "Ansiedad", en: "Anxiety" },
+      { es: "Gratitud", en: "Gratitude" }, { es: "Soledad", en: "Loneliness" },
+      { es: "Confianza", en: "Confidence" }, { es: "Empatía", en: "Empathy" },
+      { es: "Frustración", en: "Frustration" }, { es: "Entusiasmo", en: "Enthusiasm" },
+      { es: "Nostalgia", en: "Nostalgia" }, { es: "Curiosidad", en: "Curiosity" },
+      { es: "Serenidad", en: "Serenity" }, { es: "Compasión", en: "Compassion" },
+      { es: "Tristeza", en: "Sadness" }, { es: "Felicidad", en: "Happiness" },
+      { es: "Ira", en: "Rage" }, { es: "Calma", en: "Calm" },
+      { es: "Pánico", en: "Panic" }, { es: "Ternura", en: "Tenderness" },
+      { es: "Adoración", en: "Adoration" }, { es: "Desprecio", en: "Contempt" },
+      { es: "Envidia", en: "Envy" }, { es: "Culpa", en: "Guilt" },
+      { es: "Decepción", en: "Disappointment" }, { es: "Aburrimiento", en: "Boredom" },
+      { es: "Satisfacción", en: "Satisfaction" }, { es: "Admiración", en: "Admiration" },
+      { es: "Respeto", en: "Respect" }, { es: "Lealtad", en: "Loyalty" },
+      { es: "Traición", en: "Betrayal" }, { es: "Valentía", en: "Bravery" },
+      { es: "Cobardía", en: "Cowardice" }, { es: "Comprensión", en: "Understanding" },
+      { es: "Paciencia", en: "Patience" }, { es: "Impaciencia", en: "Impatience" },
+      { es: "Tolerancia", en: "Tolerance" }, { es: "Preocupación", en: "Worry" },
+      { es: "Melancolía", en: "Melancholy" }
+    ]
+  },
+  verbos: {
+    name: "Verbos", icon: "⚡",
+    words: [
+      { es: "Correr", en: "Run" }, { es: "Comer", en: "Eat" },
+      { es: "Beber", en: "Drink" }, { es: "Dormir", en: "Sleep" },
+      { es: "Hablar", en: "Speak" }, { es: "Escuchar", en: "Listen" },
+      { es: "Escribir", en: "Write" }, { es: "Leer", en: "Read" },
+      { es: "Caminar", en: "Walk" }, { es: "Viajar", en: "Travel" },
+      { es: "Aprender", en: "Learn" }, { es: "Enseñar", en: "Teach" },
+      { es: "Crear", en: "Create" }, { es: "Construir", en: "Build" },
+      { es: "Descubrir", en: "Discover" }, { es: "Recordar", en: "Remember" },
+      { es: "Olvidar", en: "Forget" }, { es: "Entender", en: "Understand" },
+      { es: "Mejorar", en: "Improve" }, { es: "Decidir", en: "Decide" },
+      { es: "Pensar", en: "Think" }, { es: "Sentir", en: "Feel" },
+      { es: "Ver", en: "See" }, { es: "Oír", en: "Hear" },
+      { es: "Tocar", en: "Touch" }, { es: "Oler", en: "Smell" },
+      { es: "Amar", en: "Love" }, { es: "Odiar", en: "Hate" },
+      { es: "Reír", en: "Laugh" }, { es: "Llorar", en: "Cry" },
+      { es: "Soñar", en: "Dream" }, { es: "Jugar", en: "Play" },
+      { es: "Trabajar", en: "Work" }, { es: "Estudiar", en: "Study" },
+      { es: "Descansar", en: "Rest" }, { es: "Cocinar", en: "Cook" },
+      { es: "Limpiar", en: "Clean" }, { es: "Abrir", en: "Open" },
+      { es: "Cerrar", en: "Close" }, { es: "Comprar", en: "Buy" },
+      { es: "Vender", en: "Sell" }, { es: "Pagar", en: "Pay" },
+      { es: "Ayudar", en: "Help" }, { es: "Cambiar", en: "Change" },
+      { es: "Ganar", en: "Win" }
+    ]
+  }
+};
+
+// ============================================================
+// CAPÍTULOS DEL MODO HISTORIA
+// ============================================================
+const STORY_CHAPTERS = [
+  {
+    id: 0,
+    title: "El Despertar",
+    icon: "🌅",
+    category: "basico",
+    narrative: "Despiertas en un pequeño pueblo llamado Littlewood. Los ancianos te dicen que, para convertirte en Maestro del Inglés, debes superar cinco pruebas. Tu primera prueba: el Dragón del Pueblo. ¿Estás listo?",
+    normalQuestions: 8,
+    lives: 3,
+    boss: {
+      name: "Dragón del Pueblo",
+      icon: "🐉",
+      hp: 3,
+      timePerQuestion: 20
+    },
+    xpReward: 150
+  },
+  {
+    id: 1,
+    title: "El Banquete",
+    icon: "🍕",
+    category: "comida",
+    narrative: "Llegas al gran banquete del reino. En la cocina, el Chef Sombrío prepara platos imposibles. Cada palabra que aprendas te acercará a la victoria. ¡Pero cuidado, el Chef no perdona errores!",
+    normalQuestions: 10,
+    lives: 3,
+    boss: {
+      name: "Chef Sombrío",
+      icon: "👨‍🍳",
+      hp: 3,
+      timePerQuestion: 18
+    },
+    xpReward: 200
+  },
+  {
+    id: 2,
+    title: "La Travesía",
+    icon: "🗺️",
+    category: "viajes",
+    narrative: "Con el estómago lleno, emprendes el viaje más peligroso. Deberás cruzar montañas, mares y desiertos. En lo profundo del océano, el Kraken te espera con acertijos imposibles.",
+    normalQuestions: 12,
+    lives: 2,
+    boss: {
+      name: "Kraken del Mar",
+      icon: "🐙",
+      hp: 4,
+      timePerQuestion: 15
+    },
+    xpReward: 300
+  },
+  {
+    id: 3,
+    title: "El Imperio",
+    icon: "💼",
+    category: "negocios",
+    narrative: "Llegas a la gran ciudad de los negocios. Rascacielos, acuerdos y traiciones. El Tiburón Capitalista controla todo. Solo un verdadero maestro de las palabras puede derrotarlo.",
+    normalQuestions: 14,
+    lives: 2,
+    boss: {
+      name: "Tiburón Capitalista",
+      icon: "🦈",
+      hp: 4,
+      timePerQuestion: 12
+    },
+    xpReward: 400
+  },
+  {
+    id: 4,
+    title: "La Batalla Final",
+    icon: "⚔️",
+    category: "mixed",
+    narrative: "El Templo del Maestro se alza ante ti. Dentro, el Guardián del Inglés te espera. Ha vencido a miles de aprendices. ¿Serás tú el primero en derrotarlo? Tu conocimiento será tu única arma.",
+    normalQuestions: 16,
+    lives: 2,
+    boss: {
+      name: "El Guardián del Inglés",
+      icon: "👹",
+      hp: 5,
+      timePerQuestion: 10
+    },
+    xpReward: 600
+  }
+];
+
+// ============================================================
+// LOGROS
+// ============================================================
+  const ACHIEVEMENTS = [
+  { id: 'first_game', icon: '🎮', name: 'Primer paso', desc: 'Completa tu primera partida' },
+  { id: 'perfect', icon: '💯', name: 'Perfecto', desc: 'Termina con 100% de precisión' },
+  { id: 'score_100', icon: '⭐', name: 'Centenario', desc: '100 puntos en una partida' },
+  { id: 'streak_5', icon: '🔥', name: 'En racha', desc: 'Acierta 5 seguidas' },
+  { id: 'streak_10', icon: '⚡', name: 'Imparable', desc: 'Acierta 10 seguidas' },
+  { id: 'games_10', icon: '🎯', name: 'Constante', desc: 'Juega 10 partidas' },
+  { id: 'games_50', icon: '🏆', name: 'Veterano', desc: 'Juega 50 partidas' },
+  { id: 'no_lives_lost', icon: '🛡️', name: 'Intocable', desc: 'Termina sin perder vidas' },
+  { id: 'all_categories', icon: '🗺️', name: 'Explorador', desc: 'Juega todas las categorías' },
+  { id: 'master', icon: '👑', name: 'Maestro', desc: 'Consigue 500 puntos totales' },
+  { id: 'level_5', icon: '🌟', name: 'Ascenso', desc: 'Llega al nivel 5' },
+  { id: 'level_10', icon: '💫', name: 'Estrella', desc: 'Llega al nivel 10' },
+  { id: 'timed_50', icon: '⏱️', name: 'Velocista', desc: '50+ puntos en contrarreloj' },
+  { id: 'group_first', icon: '👥', name: 'Social', desc: 'Juega tu primera partida grupal' },
+  { id: 'group_win', icon: '🥇', name: 'Campeón', desc: 'Gana una partida grupal' },
+  { id: 'story_start', icon: '📖', name: 'Aventurero', desc: 'Comienza el Modo Historia' },
+  { id: 'story_ch1', icon: '🌅', name: 'El Despertar', desc: 'Completa el Capítulo 1' },
+  { id: 'story_ch2', icon: '🍕', name: 'El Banquete', desc: 'Completa el Capítulo 2' },
+  { id: 'story_ch3', icon: '🗺️', name: 'La Travesía', desc: 'Completa el Capítulo 3' },
+  { id: 'story_ch4', icon: '💼', name: 'El Imperio', desc: 'Completa el Capítulo 4' },
+  { id: 'story_champion', icon: '👑', name: 'Maestro del Inglés', desc: 'Completa TODA la historia' }
+];
+
+// ============================================================
+// NIVELES Y XP
+// ============================================================
+function xpForLevel(level) { return 100 + (level - 1) * 50; }
+
+function getLevelFromXP(totalXP) {
+  let level = 1, remaining = totalXP;
+  while (remaining >= xpForLevel(level)) {
+    remaining -= xpForLevel(level);
+    level++;
+  }
+  return { level, currentXP: remaining, xpNeeded: xpForLevel(level) };
+}
+
+// ============================================================
+// ESTADO
+// ============================================================
+let state = {
+  mode: 'es-en', category: 'basico',
+  score: 0, lives: 3, qNum: 0, totalQ: 10, correct: 0,
+  streak: 0, bestStreak: 0, currentWord: null, currentData: null,
+  answered: false, usedWords: [], sessionAchievements: [],
+  timeLeft: 60, timerInterval: null, timedMode: false,
+  groupMode: false, players: [], currentPlayerIndex: 0, maxPlayers: 3,
+  // Story
+  storyMode: false, storyChapterIndex: 0,
+  storyNormalQ: 0, storyNormalAnswered: 0,
+  storyBossMode: false, storyBossHP: 0, storyBossHPMax: 0,
+  storyTimerInterval: null, storyTimePerQuestion: 0,
+  storyQuestionsTotal: 0
+};
+
+// ============================================================
+// PROGRESO
+// ============================================================
+function loadProgress() {
+  try {
+    const saved = localStorage.getItem('englishMaster4Progress');
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return {
+    totalGames: 0, bestScore: 0, totalScore: 0, bestStreak: 0,
+    totalXP: 0, achievements: [], categoriesPlayed: [],
+    groupGames: 0, groupWins: 0, playerName: 'Tú',
+    storyUnlockedChapters: [0], storyCompletedChapters: [], storyBestScores: {}
+  };
+}
+
+function saveProgress(p) {
+  try { localStorage.setItem('englishMaster4Progress', JSON.stringify(p)); } catch(e) {}
+}
+
+let progress = loadProgress();
+
+// ============================================================
+// UTILIDADES
+// ============================================================
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function copyToClipboard(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.textContent;
+    btn.textContent = '¡COPIADO!';
+    btn.style.background = '#f6ad55';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '#38a169';
+    }, 1500);
+  });
+}
+
+function speak(text, lang = 'en-US') {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang;
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function speakCurrentWord() {
+  if (!state.currentData || !state.currentWord) return;
+  if (state.currentData.isAudio) {
+    speak(state.currentWord.en, 'en-US');
+  } else if (state.currentData.isEsToEn) {
+    speak(state.currentWord.es, 'es-ES');
+  } else {
+    speak(state.currentWord.en, 'en-US');
+  }
+}
+
+function playSound(type) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    if (type === 'correct') {
+      osc.frequency.setValueAtTime(523, ctx.currentTime);
+      osc.frequency.setValueAtTime(784, ctx.currentTime + 0.1);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+      osc.start(); osc.stop(ctx.currentTime + 0.3);
+    } else if (type === 'wrong') {
+      osc.frequency.setValueAtTime(300, ctx.currentTime);
+      osc.frequency.setValueAtTime(200, ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+      osc.start(); osc.stop(ctx.currentTime + 0.3);
+    } else if (type === 'achievement') {
+      [523, 659, 784, 1047].forEach((f, i) => {
+        osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.1);
+      });
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.start(); osc.stop(ctx.currentTime + 0.5);
+    }
+  } catch(e) {}
+}
+
+function showToast(icon, text) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-icon').textContent = icon;
+  document.getElementById('toast-text').textContent = text;
+  toast.classList.add('show');
+  playSound('achievement');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+function checkAchievement(id) {
+  if (progress.achievements.includes(id)) return false;
+  const ach = ACHIEVEMENTS.find(a => a.id === id);
+  if (!ach) return false;
+  progress.achievements.push(id);
+  saveProgress(progress);
+  state.sessionAchievements.push(ach);
+  showToast(ach.icon, ach.name + ' desbloqueado');
+  return true;
+}
+
+// ============================================================
+// MODALES
+// ============================================================
+function openDonateModal() { document.getElementById('donateModal').classList.add('show'); }
+function closeDonateModal() { document.getElementById('donateModal').classList.remove('show'); }
+
+function openGroupModal() {
+  renderPlayerInputs(state.maxPlayers);
+  document.getElementById('groupModal').classList.add('show');
+}
+function closeGroupModal() { document.getElementById('groupModal').classList.remove('show'); }
+
+function selectPlayerCount(n) {
+  state.maxPlayers = n;
+  document.querySelectorAll('.count-btn').forEach((b, i) => b.classList.toggle('selected', i === n - 2));
+  renderPlayerInputs(n);
+}
+
+function renderPlayerInputs(n) {
+  const container = document.getElementById('players-inputs');
+  container.innerHTML = '';
+  for (let i = 0; i < n; i++) {
+    const group = document.createElement('div');
+    group.className = 'player-input-group';
+    group.innerHTML = `
+      <div class="player-num">${i + 1}</div>
+      <input type="text" class="player-input" id="player-${i}" placeholder="Jugador ${i + 1}" maxlength="15" value="Jugador ${i + 1}">
+    `;
+    container.appendChild(group);
+  }
+}
+
+// ============================================================
+// RENDER CATEGORÍAS
+// ============================================================
+function renderCategories() {
+  const container = document.getElementById('categories');
+  container.innerHTML = '';
+  Object.keys(WORD_DB).forEach(key => {
+    const cat = WORD_DB[key];
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn' + (state.category === key ? ' selected' : '');
+    btn.innerHTML = `<span class="cat-icon">${cat.icon}</span>${cat.name}`;
+    btn.onclick = () => { state.category = key; renderCategories(); };
+    container.appendChild(btn);
+  });
+}
+
+function updateLevelUI() {
+  const { level, currentXP, xpNeeded } = getLevelFromXP(progress.totalXP);
+  document.getElementById('user-level').textContent = level;
+  document.getElementById('xp-fill').style.width = (currentXP / xpNeeded * 100) + '%';
+  document.getElementById('xp-text').textContent = `${currentXP} / ${xpNeeded} XP`;
+}
+
+// ============================================================
+// MODO HISTORIA - SELECCIÓN
+// ============================================================
+  function openStorySelect() {
+  const container = document.getElementById('chapters-list');
+  container.innerHTML = '';
+  
+  STORY_CHAPTERS.forEach((ch, i) => {
+    const unlocked = progress.storyUnlockedChapters.includes(i);
+    const completed = progress.storyCompletedChapters.includes(i);
+    const bestScore = progress.storyBestScores[i];
+    
+    const btn = document.createElement('button');
+    btn.className = 'chapter-card' + (unlocked ? '' : ' locked') + (completed ? ' completed' : '');
+    btn.disabled = !unlocked;
+    btn.onclick = () => openStoryIntro(i);
+    
+    const statusIcon = completed ? '✅' : (unlocked ? '▶️' : '🔒');
+    const totalQ = ch.normalQuestions + ch.boss.hp;
+    const details = completed 
+      ? `Completado · Mejor: ${bestScore || 0} pts` 
+      : (unlocked ? `${totalQ}+ preguntas · ${ch.lives} vidas` : 'Completa el capítulo anterior');
+    
+    btn.innerHTML = `
+      <div class="chapter-icon-big">${unlocked ? ch.icon : '🔒'}</div>
+      <div class="chapter-info">
+        <div class="chapter-num">Capítulo ${i + 1}</div>
+        <h3>${ch.title}</h3>
+        <div class="chapter-details">${details}</div>
+      </div>
+      <div class="chapter-status">${statusIcon}</div>
+    `;
+    container.appendChild(btn);
+  });
+  
+  showScreen('screen-story-select');
+}
+
+function openStoryIntro(index) {
+  const ch = STORY_CHAPTERS[index];
+  state.storyChapterIndex = index;
+  
+  document.getElementById('intro-icon').textContent = ch.icon;
+  document.getElementById('intro-number').textContent = `Capítulo ${index + 1}`;
+  document.getElementById('intro-title').textContent = ch.title;
+  document.getElementById('intro-narrative').textContent = ch.narrative;
+  document.getElementById('intro-questions').textContent = ch.normalQuestions + ch.boss.hp;
+  document.getElementById('intro-lives').textContent = `${ch.lives} ❤️`;
+  document.getElementById('intro-boss-icon').textContent = ch.boss.icon;
+  document.getElementById('intro-boss-name').textContent = ch.boss.name;
+  
+  showScreen('screen-story-intro');
+}
+
+function beginStoryChapter() {
+  const ch = STORY_CHAPTERS[state.storyChapterIndex];
+  
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+  
+  state = {
+    mode: 'es-en',
+    category: ch.category === 'mixed' ? 'mixed' : ch.category,
+    score: 0, lives: ch.lives, qNum: 0, totalQ: 999, correct: 0,
+    streak: 0, bestStreak: 0, currentWord: null, currentData: null,
+    answered: false, usedWords: [], sessionAchievements: [],
+    timeLeft: 60, timerInterval: null, timedMode: false,
+    groupMode: false, players: [], currentPlayerIndex: 0, maxPlayers: 3,
+    storyMode: true, storyChapterIndex: state.storyChapterIndex,
+    storyNormalQ: ch.normalQuestions, storyNormalAnswered: 0,
+    storyBossMode: false, storyBossHP: 0, storyBossHPMax: ch.boss.hp,
+    storyTimerInterval: null, storyTimePerQuestion: ch.boss.timePerQuestion,
+    storyQuestionsTotal: ch.normalQuestions + ch.boss.hp
+  };
+  
+  checkAchievement('story_start');
+  
+  // UI setup
+  document.getElementById('story-progress').style.display = 'flex';
+  document.getElementById('story-chapter-label').textContent = `Capítulo ${state.storyChapterIndex + 1}: ${ch.title}`;
+  document.getElementById('normal-header').style.display = 'flex';
+  document.getElementById('turn-banner').style.display = 'none';
+  document.getElementById('players-scores').style.display = 'none';
+  document.getElementById('lives-stat').style.display = 'flex';
+  document.getElementById('timer-ring').style.display = 'none';
+  document.getElementById('qnum-stat').style.display = 'none';
+  document.getElementById('boss-battle-banner').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'none';
+  
+  showScreen('screen-game');
+  nextQuestion();
+}
+
+function nextStoryQuestion() {
+  const ch = STORY_CHAPTERS[state.storyChapterIndex];
+  
+  if (state.lives <= 0) {
+    endStoryChapter(false);
+    return;
+  }
+  
+  state.answered = false;
+  const word = pickWord();
+  const data = buildOptions(word);
+  state.currentWord = word;
+  state.currentData = data;
+  
+  document.getElementById('q-label').textContent = data.isEsToEn 
+    ? 'Traduce al inglés 🇬🇧' 
+    : 'Traduce al español 🇪🇸';
+  document.getElementById('word').textContent = data.question;
+  document.getElementById('hint').textContent = data.hint;
+  
+  // Boss mode UI
+  if (state.storyBossMode) {
+    document.getElementById('boss-battle-banner').style.display = 'block';
+    document.getElementById('boss-emoji').textContent = ch.boss.icon;
+    document.getElementById('boss-battle-name').textContent = ch.boss.name;
+    document.getElementById('boss-hp-fill').style.width = (state.storyBossHP / state.storyBossHPMax * 100) + '%';
+    document.getElementById('story-q-label').textContent = `¡JEFE FINAL! · ${state.storyBossHP}/${state.storyBossHPMax} HP`;
+    
+    // Start boss timer
+    startBossTimer();
+  } else {
+    document.getElementById('boss-battle-banner').style.display = 'none';
+    document.getElementById('story-q-label').textContent = `Pregunta ${state.storyNormalAnswered + 1}/${state.storyNormalQ}`;
+  }
+  
+  // Progress bar
+  const totalDone = state.storyNormalAnswered + (state.storyBossHPMax - state.storyBossHP);
+  document.getElementById('progress').style.width = (totalDone / state.storyQuestionsTotal * 100) + '%';
+  
+  // Options
+  const optionsEl = document.getElementById('options');
+  optionsEl.innerHTML = '';
+  data.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    btn.onclick = () => selectStoryAnswer(btn, opt, data.correctAnswer);
+    optionsEl.appendChild(btn);
+  });
+  
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('score').textContent = state.score;
+  document.getElementById('lives').textContent = state.lives;
+}
+
+function startBossTimer() {
+  if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+  
+  const ch = STORY_CHAPTERS[state.storyChapterIndex];
+  let timeLeft = ch.boss.timePerQuestion;
+  
+  const updateTimer = () => {
+    const timerEl = document.getElementById('boss-timer-big');
+    timerEl.textContent = timeLeft + 's';
+    timerEl.classList.toggle('danger', timeLeft <= 5);
+  };
+  
+  updateTimer();
+  
+  state.storyTimerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+    if (timeLeft <= 0) {
+      clearInterval(state.storyTimerInterval);
+      // Timeout = fail question
+      if (!state.answered) {
+        state.answered = true;
+        const buttons = document.querySelectorAll('.option');
+        buttons.forEach(b => b.disabled = true);
+        
+        // Find correct answer to display
+        state.currentData.options.forEach((opt, i) => {
+          if (opt === state.currentData.correctAnswer) {
+            buttons[i]?.classList.add('correct');
+          }
+        });
+        
+        state.lives--;
+        state.streak = 0;
+        const fb = document.getElementById('feedback');
+        fb.textContent = `⏰ ¡Tiempo agotado! Era: "${state.currentData.correctAnswer}"`;
+        fb.className = 'feedback show err';
+        playSound('wrong');
+        document.getElementById('lives').textContent = state.lives;
+        
+        setTimeout(() => {
+          if (state.lives <= 0) {
+            endStoryChapter(false);
+          } else {
+            advanceStoryQuestion();
+          }
+        }, 1800);
+      }
+    }
+  }, 1000);
+}
+
+function selectStoryAnswer(btn, chosen, correct) {
+  if (state.answered) return;
+  state.answered = true;
+  
+  if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+  
+  const buttons = document.querySelectorAll('.option');
+  buttons.forEach(b => b.disabled = true);
+  
+  const fb = document.getElementById('feedback');
+  
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    state.score += state.storyBossMode ? 20 : 10;
+    state.correct++;
+    state.streak++;
+    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+    
+    // Reduce boss HP
+    if (state.storyBossMode) {
+      state.storyBossHP--;
+      document.getElementById('boss-hp-fill').style.width = (state.storyBossHP / state.storyBossHPMax * 100) + '%';
+    }
+    
+    setTimeout(() => speak(state.currentWord.en, 'en-US'), 200);
+    
+    fb.textContent = `✅ ¡Correcto! +${state.storyBossMode ? 20 : 10} puntos`;
+    fb.className = 'feedback show ok';
+    playSound('correct');
+    
+    if (state.streak === 5) checkAchievement('streak_5');
+    if (state.streak === 10) checkAchievement('streak_10');
+    
+    // Check boss defeated
+    if (state.storyBossMode && state.storyBossHP <= 0) {
+      setTimeout(() => endStoryChapter(true), 1000);
+      return;
+    }
+    
+  } else {
+    btn.classList.add('wrong');
+    state.lives--;
+    state.streak = 0;
+    fb.textContent = `❌ Era: "${correct}"`;
+    fb.className = 'feedback show err';
+    playSound('wrong');
+    
+    buttons.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+  }
+  
+  document.getElementById('score').textContent = state.score;
+  document.getElementById('lives').textContent = state.lives;
+  
+  setTimeout(() => {
+    if (state.lives <= 0) {
+      endStoryChapter(false);
+    } else {
+      advanceStoryQuestion();
+    }
+  }, 1500);
+}
+
+function advanceStoryQuestion() {
+  const ch = STORY_CHAPTERS[state.storyChapterIndex];
+  
+  if (state.storyBossMode) {
+    // Boss mode: keep asking until HP = 0 or lives = 0
+    nextStoryQuestion();
+    return;
+  }
+  
+  state.storyNormalAnswered++;
+  
+  if (state.storyNormalAnswered >= state.storyNormalQ) {
+    // Enter boss mode
+    state.storyBossMode = true;
+    state.storyBossHP = ch.boss.hp;
+    nextStoryQuestion();
+    return;
+  }
+  
+  nextStoryQuestion();
+}
+
+function endStoryChapter(victory) {
+  if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+  
+  const ch = STORY_CHAPTERS[state.storyChapterIndex];
+  
+  if (victory) {
+    // Mark completed
+    if (!progress.storyCompletedChapters.includes(state.storyChapterIndex)) {
+      progress.storyCompletedChapters.push(state.storyChapterIndex);
+    }
+    
+    // Save best score
+    const currentBest = progress.storyBestScores[state.storyChapterIndex] || 0;
+    if (state.score > currentBest) {
+      progress.storyBestScores[state.storyChapterIndex] = state.score;
+    }
+    
+    // Unlock next chapter
+    const nextIdx = state.storyChapterIndex + 1;
+    if (nextIdx < STORY_CHAPTERS.length && !progress.storyUnlockedChapters.includes(nextIdx)) {
+      progress.storyUnlockedChapters.push(nextIdx);
+    }
+    
+    // XP
+    const xpGained = ch.xpReward + state.score;
+    const prevLevel = getLevelFromXP(progress.totalXP).level;
+    progress.totalXP += xpGained;
+    const newLevel = getLevelFromXP(progress.totalXP).level;
+    saveProgress(progress);
+    
+    // Achievements
+    const storyAchMap = ['story_ch1', 'story_ch2', 'story_ch3', 'story_ch4'];
+    if (storyAchMap[state.storyChapterIndex]) {
+      checkAchievement(storyAchMap[state.storyChapterIndex]);
+    }
+    if (state.storyChapterIndex === STORY_CHAPTERS.length - 1) {
+      checkAchievement('story_champion');
+    }
+    if (newLevel >= 5) checkAchievement('level_5');
+    if (newLevel >= 10) checkAchievement('level_10');
+    
+    // UI
+    document.getElementById('story-complete-message').textContent = 
+      `Has superado "${ch.title}" con ${state.score} puntos. ${ch.boss.name} ha sido derrotado.`;
+    
+    document.getElementById('story-xp-gained').textContent = `+${xpGained} XP`;
+    document.getElementById('story-xp-level').textContent = `Nivel ${newLevel} · ${getLevelFromXP(progress.totalXP).currentXP}/${getLevelFromXP(progress.totalXP).xpNeeded} XP`;
+    
+    const unlockEl = document.getElementById('next-chapter-unlock');
+    const nextChapterBtn = document.getElementById('next-chapter-btn');
+    
+    if (state.storyChapterIndex < STORY_CHAPTERS.length - 1) {
+      const nextCh = STORY_CHAPTERS[state.storyChapterIndex + 1];
+      unlockEl.style.display = 'block';
+      unlockEl.textContent = `🔓 ¡Desbloqueaste el Capítulo ${state.storyChapterIndex + 2}: ${nextCh.title}!`;
+      nextChapterBtn.style.display = 'block';
+      nextChapterBtn.textContent = `Siguiente capítulo: ${nextCh.title} →`;
+    } else {
+      unlockEl.style.display = 'block';
+      unlockEl.style.background = 'linear-gradient(135deg, #fff5e6, #ffe9c7)';
+      unlockEl.style.borderColor = '#f6ad55';
+      unlockEl.style.color = '#975a16';
+      unlockEl.textContent = '👑 ¡Has completado la historia! Eres un verdadero Maestro del Inglés.';
+      nextChapterBtn.style.display = 'none';
+    }
+    
+    // New achievements
+    const achEl = document.getElementById('story-new-achievements');
+    achEl.innerHTML = state.sessionAchievements.map(a => `
+      <div class="achievement unlocked">
+        <span class="ach-icon">${a.icon}</span>
+        <div class="ach-info"><strong>${a.name}</strong><span>${a.desc}</span></div>
+      </div>`).join('');
+    
+    showScreen('screen-story-complete');
+  } else {
+    // Failed
+    document.getElementById('story-failed-message').textContent = 
+      state.storyBossMode 
+        ? `${ch.boss.name} te ha derrotado. Solo necesitabas ${state.storyBossHP} respuesta(s) más.`
+        : `Has caído en el Capítulo ${state.storyChapterIndex + 1}. No te rindas, vuelve a intentarlo.`;
+    
+    showScreen('screen-story-failed');
+  }
+}
+
+function advanceToNextChapter() {
+  const nextIdx = state.storyChapterIndex + 1;
+  if (nextIdx < STORY_CHAPTERS.length) {
+    openStoryIntro(nextIdx);
+  }
+}
+
+function retryChapter() {
+  beginStoryChapter();
+}
+
+// ============================================================
+// INICIO JUEGO NORMAL
+// ============================================================
+  function startGame(mode) {
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+  
+  state = {
+    mode, category: state.category,
+    score: 0, lives: 3, qNum: 0,
+    totalQ: mode === 'timed' ? 999 : 10,
+    correct: 0, streak: 0, bestStreak: 0,
+    currentWord: null, currentData: null,
+    answered: false, usedWords: [], sessionAchievements: [],
+    timeLeft: 60, timerInterval: null, timedMode: mode === 'timed',
+    groupMode: false, players: [], currentPlayerIndex: 0, maxPlayers: 3,
+    storyMode: false, storyChapterIndex: 0,
+    storyNormalQ: 0, storyNormalAnswered: 0,
+    storyBossMode: false, storyBossHP: 0, storyBossHPMax: 0,
+    storyTimerInterval: null, storyTimePerQuestion: 0, storyQuestionsTotal: 0
+  };
+  
+  if (!progress.categoriesPlayed.includes(state.category)) {
+    progress.categoriesPlayed.push(state.category);
+    saveProgress(progress);
+    if (progress.categoriesPlayed.length === Object.keys(WORD_DB).length) {
+      checkAchievement('all_categories');
+    }
+  }
+  
+  document.getElementById('story-progress').style.display = 'none';
+  document.getElementById('boss-battle-banner').style.display = 'none';
+  document.getElementById('normal-header').style.display = 'flex';
+  document.getElementById('lives-stat').style.display = state.timedMode ? 'none' : 'flex';
+  document.getElementById('timer-ring').style.display = state.timedMode ? 'flex' : 'none';
+  document.getElementById('qnum-stat').style.display = state.timedMode ? 'none' : 'flex';
+  document.getElementById('turn-banner').style.display = 'none';
+  document.getElementById('players-scores').style.display = 'none';
+  
+  if (state.timedMode) startTimer();
+  
+  updateHUD();
+  showScreen('screen-game');
+  nextQuestion();
+}
+
+function startGroupGame() {
+  const players = [];
+  for (let i = 0; i < state.maxPlayers; i++) {
+    const input = document.getElementById(`player-${i}`);
+    const name = input.value.trim() || `Jugador ${i + 1}`;
+    players.push({ name, score: 0, lives: 3, correct: 0, eliminated: false });
+  }
+  
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+  
+  state = {
+    mode: 'es-en', category: state.category,
+    score: 0, lives: 3, qNum: 0, totalQ: 999, correct: 0,
+    streak: 0, bestStreak: 0, currentWord: null, currentData: null,
+    answered: false, usedWords: [], sessionAchievements: [],
+    timeLeft: 60, timerInterval: null, timedMode: false,
+    groupMode: true, players, currentPlayerIndex: 0, maxPlayers: state.maxPlayers,
+    storyMode: false, storyChapterIndex: 0,
+    storyNormalQ: 0, storyNormalAnswered: 0,
+    storyBossMode: false, storyBossHP: 0, storyBossHPMax: 0,
+    storyTimerInterval: null, storyTimePerQuestion: 0, storyQuestionsTotal: 0
+  };
+  
+  if (!progress.categoriesPlayed.includes(state.category)) {
+    progress.categoriesPlayed.push(state.category);
+    saveProgress(progress);
+    if (progress.categoriesPlayed.length === Object.keys(WORD_DB).length) {
+      checkAchievement('all_categories');
+    }
+  }
+  
+  progress.groupGames++;
+  saveProgress(progress);
+  checkAchievement('group_first');
+  
+  closeGroupModal();
+  
+  document.getElementById('story-progress').style.display = 'none';
+  document.getElementById('boss-battle-banner').style.display = 'none';
+  document.getElementById('normal-header').style.display = 'flex';
+  document.getElementById('lives-stat').style.display = 'none';
+  document.getElementById('timer-ring').style.display = 'none';
+  document.getElementById('qnum-stat').style.display = 'none';
+  document.getElementById('turn-banner').style.display = 'flex';
+  document.getElementById('players-scores').style.display = 'grid';
+  
+  renderPlayersScores();
+  updateTurnBanner();
+  showScreen('screen-game');
+  nextQuestion();
+}
+
+// ============================================================
+// TIMER NORMAL
+// ============================================================
+function startTimer() {
+  state.timeLeft = 60;
+  updateTimerUI();
+  state.timerInterval = setInterval(() => {
+    state.timeLeft--;
+    updateTimerUI();
+    if (state.timeLeft <= 0) {
+      clearInterval(state.timerInterval);
+      endGame();
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  const ring = document.getElementById('timer-ring');
+  const text = document.getElementById('timer-text');
+  const pct = state.timeLeft / 60;
+  const deg = pct * 360;
+  let color = '#667eea';
+  if (state.timeLeft <= 10) color = '#e53e3e';
+  else if (state.timeLeft <= 30) color = '#ed8936';
+  ring.style.background = `conic-gradient(${color} ${deg}deg, #e2e8f0 ${deg}deg)`;
+  text.textContent = state.timeLeft;
+  text.style.color = state.timeLeft <= 10 ? '#e53e3e' : '#4c51bf';
+}
+
+// ============================================================
+// HUD
+// ============================================================
+function updateHUD() {
+  if (state.groupMode) {
+    renderPlayersScores();
+    updateTurnBanner();
+    return;
+  }
+  document.getElementById('score').textContent = state.score;
+  document.getElementById('lives').textContent = state.lives;
+  if (!state.timedMode && !state.storyMode) {
+    document.getElementById('qnum').textContent = Math.min(state.qNum + 1, state.totalQ);
+    document.getElementById('progress').style.width = (state.qNum / state.totalQ * 100) + '%';
+  } else if (state.timedMode) {
+    document.getElementById('progress').style.width = (state.timeLeft / 60 * 100) + '%';
+  }
+}
+
+// ============================================================
+// PREGUNTAS
+// ============================================================
+function pickWord() {
+  let words;
+  if (state.storyMode) {
+    const ch = STORY_CHAPTERS[state.storyChapterIndex];
+    if (ch.category === 'mixed') {
+      const allWords = Object.values(WORD_DB).flatMap(c => c.words);
+      words = allWords;
+    } else {
+      words = WORD_DB[ch.category].words;
+    }
+  } else {
+    words = WORD_DB[state.category].words;
+  }
+  
+  const available = words.filter(w => !state.usedWords.includes(w.en));
+  const pool = available.length >= 4 ? available : words;
+  const word = pool[Math.floor(Math.random() * pool.length)];
+  state.usedWords.push(word.en);
+  return word;
+}
+
+function buildOptions(correctWord) {
+  let direction;
+  if (state.mode === 'timed' || state.groupMode || state.storyMode) {
+    direction = Math.random() < 0.5 ? 'es-en' : 'en-es';
+  } else if (state.mode === 'audio') {
+    direction = 'audio';
+  } else {
+    direction = state.mode;
+  }
+  
+  const isEsToEn = direction === 'es-en' || direction === 'audio';
+  const correctAnswer = isEsToEn ? correctWord.en : correctWord.es;
+  const answerKey = isEsToEn ? 'en' : 'es';
+  
+  let wordPool;
+  if (state.storyMode) {
+    const ch = STORY_CHAPTERS[state.storyChapterIndex];
+    if (ch.category === 'mixed') {
+      wordPool = Object.values(WORD_DB).flatMap(c => c.words);
+    } else {
+      wordPool = WORD_DB[ch.category].words;
+    }
+  } else {
+    wordPool = WORD_DB[state.category].words;
+  }
+  
+  const distractors = shuffle(
+    wordPool.filter(w => w[answerKey] !== correctAnswer)
+  ).slice(0, 3).map(w => w[answerKey]);
+  
+  const options = shuffle([correctAnswer, ...distractors]);
+  
+  return {
+    question: direction === 'audio' ? '🔊 Escucha...' : (isEsToEn ? correctWord.es : correctWord.en),
+    correctAnswer, options, isEsToEn,
+    isAudio: direction === 'audio',
+    hint: direction === 'audio' ? 'Toca el altavoz para escuchar'
+      : (isEsToEn ? correctWord.en.length + ' letras' : correctWord.es.length + ' letras')
+  };
+}
+
+function nextQuestion() {
+  if (state.storyMode) {
+    nextStoryQuestion();
+    return;
+  }
+  
+  if (!state.timedMode && !state.groupMode && (state.lives <= 0 || state.qNum >= state.totalQ)) {
+    endGame();
+    return;
+  }
+  
+  state.answered = false;
+  const word = pickWord();
+  const data = buildOptions(word);
+  state.currentWord = word;
+  state.currentData = data;
+  
+  document.getElementById('q-label').textContent = data.isAudio
+    ? 'Escucha y elige 🇬🇧'
+    : (data.isEsToEn ? 'Traduce al inglés 🇬🇧' : 'Traduce al español 🇪🇸');
+  document.getElementById('word').textContent = data.question;
+  document.getElementById('hint').textContent = data.hint;
+  
+  if (data.isAudio) setTimeout(() => speak(word.en, 'en-US'), 300);
+  
+  const optionsEl = document.getElementById('options');
+  optionsEl.innerHTML = '';
+  data.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt;
+    btn.onclick = () => selectAnswer(btn, opt, data.correctAnswer);
+    optionsEl.appendChild(btn);
+  });
+  
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('next-btn').style.display = 'none';
+  updateHUD();
+}
+
+function selectAnswer(btn, chosen, correct) {
+  if (state.answered) return;
+  state.answered = true;
+  
+  const buttons = document.querySelectorAll('.option');
+  buttons.forEach(b => b.disabled = true);
+  
+  const fb = document.getElementById('feedback');
+  const player = state.groupMode ? state.players[state.currentPlayerIndex] : null;
+  
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    const points = state.timedMode ? 15 : 10;
+    if (state.groupMode) { player.score += points; player.correct++; }
+    else { state.score += points; state.correct++; }
+    
+    state.streak++;
+    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+    
+    if (state.currentWord) setTimeout(() => speak(state.currentWord.en, 'en-US'), 200);
+    
+    fb.textContent = `✅ ¡Correcto! +${points} puntos`;
+    fb.className = 'feedback show ok';
+    playSound('correct');
+    
+    if (state.streak === 5) checkAchievement('streak_5');
+    if (state.streak === 10) checkAchievement('streak_10');
+  } else {
+    btn.classList.add('wrong');
+    state.streak = 0;
+    if (state.groupMode) {
+      player.lives--;
+      if (player.lives <= 0) player.eliminated = true;
+    } else if (!state.timedMode) {
+      state.lives--;
+    }
+    fb.textContent = `❌ Era: "${correct}"`;
+    fb.className = 'feedback show err';
+    playSound('wrong');
+    buttons.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+  }
+  
+  updateHUD();
+  
+  if (state.timedMode) {
+    setTimeout(() => { if (state.timeLeft > 0) advance(); }, 800);
+  } else if (state.groupMode) {
+    setTimeout(() => advance(), 1500);
+  } else {
+    document.getElementById('next-btn').style.display = 'block';
+  }
+}
+
+function advance() {
+  state.qNum++;
+  
+  if (state.groupMode) {
+    const alive = state.players.filter(p => !p.eliminated);
+    if (alive.length <= 1) { endGame(); return; }
+    nextAlivePlayer();
+    let safety = 0;
+    while (state.players[state.currentPlayerIndex].eliminated && safety < state.players.length) {
+      nextAlivePlayer();
+      safety++;
+    }
+    nextQuestion();
+    return;
+  }
+  
+  if (!state.timedMode && (state.lives <= 0 || state.qNum >= state.totalQ)) endGame();
+  else nextQuestion();
+}
+
+function renderPlayersScores() {
+  const container = document.getElementById('players-scores');
+  container.innerHTML = state.players.map((p, i) => `
+    <div class="player-card ${i === state.currentPlayerIndex ? 'active' : ''} ${p.eliminated ? 'eliminated' : ''}">
+      <div class="pname">${p.name}</div>
+      <div class="pscore">${p.score}</div>
+      <div class="plives">${'❤️'.repeat(p.lives)}${'🖤'.repeat(3 - p.lives)}</div>
+    </div>`).join('');
+}
+
+function updateTurnBanner() {
+  const player = state.players[state.currentPlayerIndex];
+  document.getElementById('player-name') || (document.getElementById('turn-player-name').textContent = player.name);
+}
+
+function nextAlivePlayer() {
+  let attempts = 0;
+  do {
+    state.currentPlayerIndex = (state.currentPlayerIndex + 1) % state.players.length;
+    attempts++;
+  } while (state.players[state.currentPlayerIndex].eliminated && attempts < state.players.length * 2);
+}
+
+// ============================================================
+// FIN DE PARTIDA NORMAL
+// ============================================================
+  function endGame() {
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  if (state.groupMode) { endGroupGame(); return; }
+  
+  const finalAccuracy = Math.round((state.correct / Math.max(state.qNum, 1)) * 100);
+  let xpGained = state.score;
+  if (finalAccuracy === 100 && state.qNum >= 5) xpGained += 50;
+  if (state.timedMode) xpGained = Math.round(xpGained * 1.2);
+  
+  const prevLevel = getLevelFromXP(progress.totalXP).level;
+  progress.totalXP += xpGained;
+  const newLevel = getLevelFromXP(progress.totalXP).level;
+  
+  progress.totalGames++;
+  progress.totalScore += state.score;
+  if (state.score > progress.bestScore) progress.bestScore = state.score;
+  if (state.bestStreak > progress.bestStreak) progress.bestStreak = state.bestStreak;
+  saveProgress(progress);
+  
+  checkAchievement('first_game');
+  if (finalAccuracy === 100 && state.qNum >= 5) checkAchievement('perfect');
+  if (state.score >= 100) checkAchievement('score_100');
+  if (progress.totalGames >= 10) checkAchievement('games_10');
+  if (progress.totalGames >= 50) checkAchievement('games_50');
+  if (state.lives === 3 && state.qNum >= 5 && !state.timedMode) checkAchievement('no_lives_lost');
+  if (progress.totalScore >= 500) checkAchievement('master');
+  if (newLevel >= 5) checkAchievement('level_5');
+  if (newLevel >= 10) checkAchievement('level_10');
+  if (state.timedMode && state.score >= 50) checkAchievement('timed_50');
+  
+  document.getElementById('final-score').textContent = state.score;
+  document.getElementById('final-correct').textContent = state.correct;
+  document.getElementById('final-accuracy').textContent = finalAccuracy + '%';
+  document.getElementById('final-streak').textContent = state.bestStreak;
+  document.getElementById('group-ranking').style.display = 'none';
+  document.getElementById('normal-stats').style.display = 'grid';
+  
+  const xpEl = document.getElementById('xp-earned');
+  xpEl.style.display = 'block';
+  document.getElementById('xp-gained-text').textContent = `+${xpGained} XP`;
+  const lvlData = getLevelFromXP(progress.totalXP);
+  if (newLevel > prevLevel) {
+    document.getElementById('xp-level-text').textContent = `🎉 ¡Subiste al nivel ${newLevel}!`;
+    xpEl.style.background = 'linear-gradient(135deg, #c6f6d5, #9ae6b4)';
+    xpEl.style.borderLeftColor = '#38a169';
+    setTimeout(() => showToast('🌟', `¡Nivel ${newLevel} alcanzado!`), 500);
+  } else {
+    document.getElementById('xp-level-text').textContent = `Nivel ${lvlData.level} · ${lvlData.currentXP}/${lvlData.xpNeeded} XP`;
+  }
+  
+  const title = document.getElementById('results-title');
+  const msg = document.getElementById('results-message');
+  
+  if (state.timedMode) {
+    if (state.score >= 150) { title.textContent = '⚡ ¡Velocidad Suprema!'; msg.textContent = 'Tu rapidez es impresionante.'; }
+    else if (state.score >= 80) { title.textContent = '🏃 ¡Buen ritmo!'; msg.textContent = 'Vas rápido. Supera tu marca.'; }
+    else { title.textContent = '⏱️ Tiempo agotado'; msg.textContent = 'Practica más para ganar velocidad.'; }
+  } else if (state.lives <= 0) {
+    title.textContent = '💔 Sin vidas';
+    msg.textContent = 'Se acabaron tus vidas. ¡Inténtalo de nuevo!';
+  } else if (finalAccuracy >= 80) {
+    title.textContent = '🏆 ¡Excelente!';
+    msg.textContent = '¡Dominas el vocabulario!';
+  } else if (finalAccuracy >= 50) {
+    title.textContent = '👍 ¡Buen trabajo!';
+    msg.textContent = 'Vas por buen camino.';
+  } else {
+    title.textContent = '📚 Sigue practicando';
+    msg.textContent = 'Cada intento te hace mejor.';
+  }
+  
+  renderNewAchievements('new-achievements');
+  showScreen('screen-results');
+}
+
+function endGroupGame() {
+  const ranking = [...state.players].sort((a, b) => {
+    if (a.eliminated !== b.eliminated) return a.eliminated ? 1 : -1;
+    return b.score - a.score;
+  });
+  
+  const winner = ranking[0];
+  const isMeWinner = winner.name === progress.playerName;
+  
+  let xpGained = Math.round(state.players.reduce((sum, p) => sum + p.score, 0) / 2);
+  if (isMeWinner) { xpGained += 30; progress.groupWins++; checkAchievement('group_win'); }
+  
+  const prevLevel = getLevelFromXP(progress.totalXP).level;
+  progress.totalXP += xpGained;
+  const newLevel = getLevelFromXP(progress.totalXP).level;
+  saveProgress(progress);
+  
+  if (newLevel >= 5) checkAchievement('level_5');
+  if (newLevel >= 10) checkAchievement('level_10');
+  
+  document.getElementById('results-title').textContent = `🥇 ¡${winner.name} gana!`;
+  document.getElementById('final-score').textContent = winner.score;
+  document.getElementById('results-message').textContent = `Felicidades ${winner.name}. Sigue practicando para mejorar tu inglés.`;
+  document.getElementById('normal-stats').style.display = 'none';
+  
+  const rankingEl = document.getElementById('group-ranking');
+  rankingEl.style.display = 'block';
+  const medals = ['🥇', '🥈', '🥉', '4️⃣'];
+  const classes = ['first', 'second', 'third', ''];
+  rankingEl.innerHTML = '<div class="section-title" style="text-align:center;">🏆 Ranking final</div>' +
+    ranking.map((p, i) => `
+      <div class="ranking-row ${classes[i]}">
+        <div class="ranking-medal">${p.eliminated ? '💀' : medals[i]}</div>
+        <div class="ranking-info">
+          <strong>${p.name}${p.eliminated ? ' (eliminado)' : ''}</strong>
+          <span>${p.correct} aciertos · ${'❤️'.repeat(Math.max(0, p.lives))}</span>
+        </div>
+        <div class="ranking-score">${p.score}</div>
+      </div>`).join('');
+  
+  const xpEl = document.getElementById('xp-earned');
+  xpEl.style.display = 'block';
+  document.getElementById('xp-gained-text').textContent = `+${xpGained} XP`;
+  const lvlData = getLevelFromXP(progress.totalXP);
+  if (newLevel > prevLevel) {
+    document.getElementById('xp-level-text').textContent = `🎉 ¡Subiste al nivel ${newLevel}!`;
+    xpEl.style.background = 'linear-gradient(135deg, #c6f6d5, #9ae6b4)';
+    xpEl.style.borderLeftColor = '#38a169';
+    setTimeout(() => showToast('🌟', `¡Nivel ${newLevel} alcanzado!`), 500);
+  } else {
+    document.getElementById('xp-level-text').textContent = `Nivel ${lvlData.level} · ${lvlData.currentXP}/${lvlData.xpNeeded} XP`;
+  }
+  
+  renderNewAchievements('new-achievements');
+  showScreen('screen-results');
+}
+
+function renderNewAchievements(containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = state.sessionAchievements.length > 0
+    ? '<div class="section-title" style="text-align:center;">🏅 Logros desbloqueados</div>' +
+      state.sessionAchievements.map(a => `
+        <div class="achievement unlocked">
+          <span class="ach-icon">${a.icon}</span>
+          <div class="ach-info"><strong>${a.name}</strong><span>${a.desc}</span></div>
+        </div>`).join('')
+    : '';
+}
+
+function quitGame() {
+  if (confirm('¿Seguro que quieres salir? Perderás el progreso de esta partida.')) {
+    if (state.timerInterval) clearInterval(state.timerInterval);
+    if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+    backToMenu();
+  }
+}
+
+function backToMenu() {
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  if (state.storyTimerInterval) clearInterval(state.storyTimerInterval);
+  updateLevelUI();
+  showScreen('screen-start');
+}
+
+function showAchievements() {
+  const list = document.getElementById('achievements-list');
+  list.innerHTML = ACHIEVEMENTS.map(a => {
+    const unlocked = progress.achievements.includes(a.id);
+    return `
+      <div class="achievement ${unlocked ? 'unlocked' : 'locked'}">
+        <span class="ach-icon">${unlocked ? a.icon : '🔒'}</span>
+        <div class="ach-info"><strong>${a.name}</strong><span>${a.desc}</span></div>
+      </div>`;
+  }).join('');
+  showScreen('screen-achievements');
+}
+
+function showLeaderboard() {
+  const fakePlayers = [
+    { name: 'MariaG', score: 480 }, { name: 'EnglishKing', score: 420 },
+    { name: 'Polyglot99', score: 370 }, { name: 'WordMaster', score: 310 },
+    { name: 'LearnFast', score: 280 }, { name: 'SpeakEasy', score: 240 },
+    { name: 'VocabHero', score: 200 }, { name: 'IdiomasPro', score: 160 }
+  ];
+  fakePlayers.push({ name: progress.playerName, score: progress.bestScore, me: true });
+  fakePlayers.sort((a, b) => b.score - a.score);
+  document.getElementById('my-rank').textContent = fakePlayers.findIndex(p => p.me) + 1;
+  
+  document.getElementById('leaderboard-list').innerHTML = fakePlayers.map((p, i) => {
+    let rankClass = '';
+    if (i === 0) rankClass = 'gold';
+    else if (i === 1) rankClass = 'silver';
+    else if (i === 2) rankClass = 'bronze';
+    return `
+      <div class="leader-row ${p.me ? 'me' : ''}">
+        <div class="leader-rank ${rankClass}">${i + 1}</div>
+        <div class="leader-name">${p.name}${p.me ? ' (tú)' : ''}</div>
+        <div class="leader-score">${p.score}</div>
+      </div>`;
+  }).join('');
+  
+  showScreen('screen-leaderboard');
+}
+
+// ============================================================
+// INICIO
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderCategories();
+  updateLevelUI();
+  renderPlayerInputs(3);
+});
+
+document.addEventListener('keydown', (e) => {
+  const nextBtn = document.getElementById('next-btn');
+  if (e.key === 'Enter' && nextBtn && nextBtn.style.display === 'block') advance();
+  if (e.key === ' ' && document.getElementById('screen-game').classList.contains('active') && !state.answered) {
+    e.preventDefault();
+    speakCurrentWord();
+  }
+  if (e.key === 'Escape') {
+    closeDonateModal();
+    closeGroupModal();
+  }
+});
+</script>
+
+</body>
+</html>
